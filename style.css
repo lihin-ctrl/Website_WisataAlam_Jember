@@ -1,0 +1,361 @@
+/* ===== Wisata Alam Jember — style.css ===== */
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Nunito+Sans:wght@400;600;700&display=swap");
+
+:root {
+  --forest: #1c3a2c;
+  --forest-2: #2d5a43;
+  --sea: #1b6b75;
+  --sea-dark: #124a52;
+  --mist: #f1f5f2;
+  --paper: #ffffff;
+  --ink: #1d2622;
+  --muted: #55645c;
+  --sun: #e6a935;
+  --line: #d6e0d9;
+
+  --font-head: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Nunito Sans", "Segoe UI", system-ui, sans-serif;
+  --radius: 14px;
+  --wrap: 1120px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--mist);
+}
+
+img, svg { max-width: 100%; display: block; }
+
+a { color: var(--sea); }
+
+:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.wrap {
+  width: min(var(--wrap), 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-head);
+  line-height: 1.12;
+  margin: 0 0 .6em;
+  letter-spacing: -.01em;
+}
+
+/* ===== Navbar ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(28, 58, 44, .96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+}
+
+.brand {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: #fff;
+  text-decoration: none;
+}
+.brand span { color: var(--sun); }
+
+.nav-links {
+  display: flex;
+  gap: 1.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-links a {
+  color: #dbe7df;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: .98rem;
+  padding: .4rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+.nav-links a:hover { color: #fff; border-color: var(--sun); }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, .35);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  padding: .4rem .9rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* ===== Hero ===== */
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(180deg, #153a40 0%, var(--sea) 42%, #6fa9a3 72%, #f2d49b 100%);
+  padding: clamp(4rem, 10vw, 7.5rem) 0 0;
+}
+
+.hero-inner { position: relative; z-index: 2; padding-bottom: clamp(9rem, 20vw, 15rem); }
+
+.hero h1 {
+  font-size: clamp(2.6rem, 7vw, 5.2rem);
+  font-weight: 800;
+  max-width: 14ch;
+  text-wrap: balance;
+}
+
+.hero p {
+  max-width: 52ch;
+  font-size: 1.15rem;
+  color: #e6f0ea;
+  margin-bottom: 2rem;
+}
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: .9rem; }
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: .85rem 1.5rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform .15s, background .2s, color .2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--sun); color: #2a1e04; }
+.btn-primary:hover { background: #f1bb4d; }
+.btn-ghost { border-color: rgba(255, 255, 255, .7); color: #fff; }
+.btn-ghost:hover { background: rgba(255, 255, 255, .14); }
+
+.hero-sun {
+  position: absolute;
+  right: 12%;
+  bottom: 30%;
+  width: clamp(90px, 14vw, 180px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff3c8 0%, #f6cf70 55%, rgba(246, 207, 112, 0) 72%);
+  z-index: 1;
+  animation: rise 1.6s ease-out both;
+}
+@keyframes rise {
+  from { transform: translateY(60px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+.hero-land {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+}
+
+/* ===== Section umum ===== */
+.section { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+.section-head { max-width: 62ch; margin-bottom: 2.5rem; }
+.section-head h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); color: var(--forest); }
+.section-head p { color: var(--muted); margin: 0; }
+
+/* ===== Tentang ===== */
+.about {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+.about p { margin: 0 0 1.1em; max-width: 62ch; }
+
+.facts {
+  margin: 0;
+  background: var(--forest);
+  color: #e6f0ea;
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  display: grid;
+  gap: 1.2rem;
+}
+.facts div { border-bottom: 1px solid rgba(255, 255, 255, .15); padding-bottom: 1.1rem; }
+.facts div:last-child { border: 0; padding: 0; }
+.facts dt { font-size: .9rem; color: #a9c7b6; }
+.facts dd { margin: .1rem 0 0; font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; color: #fff; }
+
+/* ===== Destinasi ===== */
+.destinasi { background: var(--paper); }
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-bottom: 2rem;
+}
+.filter-btn {
+  font: inherit;
+  font-weight: 700;
+  padding: .5rem 1.15rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+  color: var(--forest);
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.filter-btn:hover { border-color: var(--forest-2); }
+.filter-btn.active { background: var(--forest); border-color: var(--forest); color: #fff; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--mist);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.card[hidden] { display: none; }
+
+.card-top {
+  position: relative;
+  isolation: isolate;
+  height: 190px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  color: #fff;
+}
+.card-top.pantai { background: linear-gradient(160deg, #1b6b75, #5fb0b3 70%, #f0d58f); }
+.card-top.air { background: linear-gradient(160deg, #123c3a, #2f8a78 65%, #9ad3b8); }
+.card-top.hutan { background: linear-gradient(160deg, #1c3a2c, #3f7a55 65%, #b5c97a); }
+
+.card-top .badge {
+  font-size: .82rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, .28);
+  padding: .2rem .7rem;
+  border-radius: 999px;
+}
+.card-top .kec { font-size: .88rem; opacity: .95; }
+
+.card-body { padding: 1.4rem 1.4rem 1.6rem; }
+.card h3 { font-size: 1.4rem; color: var(--forest); margin-bottom: .4rem; }
+.card p { margin: 0 0 1rem; color: var(--muted); font-size: 1rem; }
+.card ul { margin: 0; padding-left: 1.1rem; font-size: .96rem; }
+.card li { margin-bottom: .25rem; }
+
+/* ===== Tips ===== */
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+.tip {
+  border-left: 4px solid var(--sun);
+  padding: .2rem 0 .2rem 1.2rem;
+}
+.tip h3 { font-size: 1.2rem; color: var(--forest); margin-bottom: .3rem; }
+.tip p { margin: 0; color: var(--muted); }
+
+.notice {
+  margin-top: 2.5rem;
+  padding: 1.1rem 1.4rem;
+  background: #fff7e3;
+  border: 1px solid #ecd9a6;
+  border-radius: var(--radius);
+  font-size: .98rem;
+}
+
+/* ===== Footer ===== */
+.site-footer {
+  background: var(--forest);
+  color: #cfe0d5;
+  padding: 2.5rem 0;
+  font-size: .96rem;
+}
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.site-footer strong { color: #fff; font-family: var(--font-head); }
+
+/* ===== Responsive ===== */
+@media (max-width: 800px) {
+  .about { grid-template-columns: 1fr; }
+  .nav-toggle { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--forest);
+    padding: .5rem 1.25rem 1rem;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { display: block; padding: .8rem 0; border-bottom: 1px solid rgba(255, 255, 255, .1); }
+  .hero-sun { right: 8%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-sun { animation: none; }
+  .btn, .nav-links a, .filter-btn { transition: none; }
+}
+
+/* ===== Foto destinasi ===== */
+.card-top img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+.card-top:has(img)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.55) 100%);
+}
